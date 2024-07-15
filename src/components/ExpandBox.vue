@@ -1,16 +1,32 @@
 <script setup>
 import { ref, computed } from 'vue';
-const props = defineProps(['title', 'content'])
+// defineProps(['title', 'content'])
+defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        default: 'Valor padrão da minha caixa...'
+    },
+    qnt: {
+        type: Number,
+        default: 10
+    }
+})
+
 const ShowBox = ref(false)
 const textobotao = computed(() => ShowBox.value ? 'Esconder' : 'Mostrar')
 </script>
 
 <template>
     <div>
-        <button @click="ShowBox =! ShowBox">{{ textobotao }}</button>
+        <button @click="ShowBox = !ShowBox">{{ textobotao }}</button>
         <div v-if="ShowBox" class="expand-box">
-            <h1>{{ props.title }}</h1>
-            <p>{{ props.content }}</p>
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+            <p>{{ qnt }}</p>
         </div>
     </div>
 
